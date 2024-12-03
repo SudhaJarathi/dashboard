@@ -1,51 +1,68 @@
-using Microsoft.AspNetCore.Mvc;
-using dashboard_api.Model;
-using dashboard_api.Data;
+using dashboard_api.DTOs;
 using dashboard_api.Services;
+using Microsoft.AspNetCore.Mvc;
 
-
-namespace Dashboard_API.Controllers
+namespace dashboard_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class DashboardController : ControllerBase
-    {       
+    {
         private readonly ILogger<DashboardController> _logger;
-        private readonly DashboardDbContext _context;
-        private readonly IDashboardService _dashboardService;
+        private readonly IProductService _productService;
 
-        public DashboardController(ILogger<DashboardController> logger, DashboardDbContext context, IDashboardService dashboardService)
+        public DashboardController(ILogger<DashboardController> logger, IProductService productRepository)
         {
             _logger = logger;
-            _context = context;
-            _dashboardService = dashboardService;
+            _productService = productRepository;
+
+            _logger.LogInformation("Dashboard Controller Started...");
         }
-               
 
         [HttpGet]
-        public Task<ActionResult<IEnumerable<Dashboard>>> GetDashboard()
+        public async Task<ActionResult<IEnumerable<ProductReadDTO>>> GetProductsAsync()
         {
-            var dashboard = new Dashboard
-            {
-                Id = 1,
-                Name = "sample"
-            };
-            return Task.FromResult<ActionResult<IEnumerable<Dashboard>>>(Ok(dashboard));
+            var products = await _productService.GetAllProductsAsync();
+
+            return Ok(products);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductReadDTO?>> GetProductAsync(int id)
+        {
+            var product = await _productService.GetProductByIdAsync(id);
+
+            if (product == null)
+                return NotFound();
+
+            return product;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Dashboard>> CreateDashboard(Dashboard dashboard)
+        public async Task<ActionResult<ProductReadDTO>> AddProductAsync([FromBody] ProductCreateUpdateDTO product)
         {
-            var createdOrderDto = await _dashboardService.CreateDashboardAsync(dashboard);
+            var newProduct = await _productService.CreateProductAsync(product);
 
-            return Created($"/api/dashboard/{dashboard.Id}", 1);           
+            return Created($"New product {newProduct.Id} added", newProduct);
         }
-        
-        [HttpPut("{id}")]
-        public async Task<ActionResult<Dashboard>> UpdateDashboard(int id, Dashboard dashboard)
+
+        [HttpPut()]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductCreateUpdateDTO product)
         {
-           var updatedDashboard = await _dashboardService.UpdateDashboardAsync(dashboard);
-           return Ok(updatedDashboard);            
+            var updatedProduct = await _productService.UpdateProductAsync(id, product);
+            if (updatedProduct == null)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            await _productService.DeleteProductAsync(id);
+
+            return NoContent();
         }
     }
 }
