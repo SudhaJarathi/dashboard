@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using dashboard_api.Model;
+using dashboard_api.Entities;
 
 namespace dashboard_api.Data
 {
@@ -8,7 +8,7 @@ namespace dashboard_api.Data
         public DashboardDbContext(DbContextOptions<DashboardDbContext> options)
             : base(options) { }
 
-        public DbSet<Dashboard> Dashboard { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 
 }
