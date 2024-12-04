@@ -1,0 +1,17 @@
+<div class="dashboard">
+    <!-- DataGrid to display the detailed data -->
+    <div class="data-grid-container">
+      <dx-data-grid
+        [dataSource]="data"
+        [showBorders]="true"
+        (onRowClick)="onRowClick($event)"
+      >
+        <dxi-column dataField="id" [width]="80"></dxi-column>
+        <dxi-column dataField="name" [width]="150"></dxi-column>
+        <dxi-column dataField="description" [width]="150"></dxi-column>
+        <dxi-column dataField="category" [width]="120"></dxi-column>
+        <dxi-column dataField="price" [width]="100"></dxi-column>
+      </dx-data-grid>
+    </div>
+  </div>
+  
