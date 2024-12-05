@@ -1,0 +1,23 @@
+<div class="details-container">
+    <h2>Row Details</h2>
+    <form>
+      <label>ID:</label>
+      <input type="text" [(ngModel)]="rowData.id" disabled />
+  
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="rowData.name" />
+  
+      <label>Description:</label>
+      <input type="text" [(ngModel)]="rowData.description" />
+  
+      <label>Category:</label>
+      <input type="text" [(ngModel)]="rowData.category" />
+  
+      <label>Price:</label>
+      <input type="number" [(ngModel)]="rowData.price" />
+  
+      <button type="button" (click)="updateRow()">Update</button>
+      <button type="button" (click)="deleteRow()">Delete</button>
+    </form>
+  </div>
+  
