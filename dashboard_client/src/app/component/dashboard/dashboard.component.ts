@@ -7,13 +7,16 @@ import { Product } from 'src/app/model/product';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   data: Product[] = [];
-  hasRowClicked = false;
+  hasViewClicked = false;
 
-  constructor(private router: Router, private dashboardService: DashboardService) {}
+  constructor(
+    private router: Router,
+    private dashboardService: DashboardService,
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -25,11 +28,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  //ToDo - extend update and delete functionality.
   onRowClick(event: any) {
-    this.hasRowClicked = true;
     const rowId = event.data.id;
-    this.router.navigate(['/details', rowId]); // Navigate to details page with the row ID
+    this.hasViewClicked = true;
+    this.router.navigate(['/details', rowId]);
   }
-
 }

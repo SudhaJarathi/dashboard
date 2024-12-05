@@ -12,20 +12,15 @@ import { DetailsComponent } from './component/details/details.component';
 import { DetailsService } from './component/details/details.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    DetailsComponent
-  ],
+  declarations: [AppComponent, DashboardComponent, DetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     DxDataGridModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
   providers: [DashboardService, DetailsService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

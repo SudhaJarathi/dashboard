@@ -4,21 +4,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DetailsService } from './details.service';
 import { Product } from 'src/app/model/product';
 
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
   rowData: any = {};
   id: number | null = null;
-  apiUrl: string = 'http://localhost:48612/api/dashboard';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private detailsService: DetailsService
+    private detailsService: DetailsService,
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +34,7 @@ export class DetailsComponent implements OnInit {
 
   updateData(): void {
     this.detailsService.updateData(this.rowData as Product);
-    this.router.navigate(['/']);    
+    this.router.navigate(['/']);
   }
 
   deleteData(): void {
@@ -45,6 +43,6 @@ export class DetailsComponent implements OnInit {
   }
 
   backToDashboard(): void {
-    this.router.navigate(['/']);  
+    this.router.navigate(['/']);
   }
 }
