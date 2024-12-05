@@ -15,24 +15,24 @@ namespace dashboard_api.Repositories
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Product.ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return await _context.Products.FindAsync(id);
+            return await _context.Product.FindAsync(id);
         }
 
         public async Task<Product> CreateProductAsync(Product product)
         {
-            _context.Products.Add(product);
+            _context.Product.Add(product);
             await _context.SaveChangesAsync();
             return product;
         }
 
         public async Task<Product> UpdateProductAsync(Product product)
         {
-            var existingProduct = await _context.Products.FindAsync(product.Id);
+            var existingProduct = await _context.Product.FindAsync(product.Id);
             if (existingProduct == null)
             {
                 return null;
@@ -50,10 +50,10 @@ namespace dashboard_api.Repositories
 
         public async Task DeleteProductAsync(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
             if (product != null)
             {
-                _context.Products.Remove(product);
+                _context.Product.Remove(product);
                 await _context.SaveChangesAsync();
             }
         }

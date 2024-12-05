@@ -8,7 +8,7 @@ namespace dashboard_api.Data
         public DashboardDbContext(DbContextOptions<DashboardDbContext> options)
             : base(options) { }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 
 }
