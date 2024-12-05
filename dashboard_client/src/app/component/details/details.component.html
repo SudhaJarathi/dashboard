@@ -1,23 +1,45 @@
 <div class="details-container">
-    <h2>Row Details</h2>
-    <form>
-      <label>ID:</label>
-      <input type="text" [(ngModel)]="rowData.id" disabled />
-  
-      <label>Name:</label>
-      <input type="text" [(ngModel)]="rowData.name" />
-  
-      <label>Description:</label>
-      <input type="text" [(ngModel)]="rowData.description" />
-  
-      <label>Category:</label>
-      <input type="text" [(ngModel)]="rowData.category" />
-  
-      <label>Price:</label>
-      <input type="number" [(ngModel)]="rowData.price" />
-  
-      <button type="button" (click)="updateRow()">Update</button>
-      <button type="button" (click)="deleteRow()">Delete</button>
-    </form>
+        <h2>Dashboard Details</h2>
+        <form>
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            [(ngModel)]="rowData.name"
+            name="name"
+          />
+          <br />
+      
+          <label for="description">Description:</label>
+          <input
+            type="text"
+            id="description"
+            [(ngModel)]="rowData.description"
+            name="description"
+          />
+          <br />
+      
+          <label for="category">Category:</label>
+          <input
+            type="text"
+            id="category"
+            [(ngModel)]="rowData.category"
+            name="category"
+          />
+          <br />
+      
+          <label for="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            [(ngModel)]="rowData.price"
+            name="price"
+          />
+          <br />
+      
+          <button type="button" (click)="backToDashboard()">Back</button>
+          <button type="button" (click)="updateData()">Update</button>
+          <button type="button" (click)="deleteData()">Delete</button>
+        </form>
   </div>
   

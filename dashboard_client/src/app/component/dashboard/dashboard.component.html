@@ -1,3 +1,9 @@
+<ng-container *ngIf="!hasRowClicked; then dashboardTemplate; else detailsTemplate"></ng-container>
+
+<ng-template #dashboardTemplate>
+  <p>Dashboard</p>
+
+
 <div class="dashboard">
     <!-- DataGrid to display the detailed data -->
     <div class="data-grid-container">
@@ -14,4 +20,10 @@
       </dx-data-grid>
     </div>
   </div>
+</ng-template>
+
+<ng-template #detailsTemplate>
+  <app-details></app-details>
+</ng-template>
+  
   

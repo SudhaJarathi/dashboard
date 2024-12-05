@@ -9,6 +9,7 @@ import { DxDataGridModule } from 'devextreme-angular';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { DashboardService } from './component/dashboard/dashboard.service';
 import { DetailsComponent } from './component/details/details.component';
+import { DetailsService } from './component/details/details.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { DetailsComponent } from './component/details/details.component';
     HttpClientModule
 
   ],
-  providers: [DashboardService],
+  providers: [DashboardService, DetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

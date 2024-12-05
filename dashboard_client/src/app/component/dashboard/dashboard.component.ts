@@ -11,6 +11,7 @@ import { Product } from 'src/app/model/product';
 })
 export class DashboardComponent implements OnInit {
   data: Product[] = [];
+  hasRowClicked = false;
 
   constructor(private router: Router, private dashboardService: DashboardService) {}
 
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
 
   //ToDo - extend update and delete functionality.
   onRowClick(event: any) {
+    this.hasRowClicked = true;
     const rowId = event.data.id;
     this.router.navigate(['/details', rowId]); // Navigate to details page with the row ID
   }

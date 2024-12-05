@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+
+import { DetailsService } from './details.service';
+import { Product } from 'src/app/model/product';
 
 
 @Component({
@@ -10,53 +12,39 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DetailsComponent implements OnInit {
   rowData: any = {};
-  apiUrl: string = 'https://your-api-endpoint.com/items'; // Replace with your actual API endpoint
+  id: number | null = null;
+  apiUrl: string = 'http://localhost:48612/api/dashboard';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private detailsService: DetailsService
   ) {}
 
   ngOnInit(): void {
-    const rowId = this.route.snapshot.paramMap.get('id');
-    if (rowId) {
-      this.fetchRowData(rowId);
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.id) {
+      this.getData(this.id);
     }
   }
 
-  fetchRowData(id: string): void {
-    this.http.get(`${this.apiUrl}/${id}`).subscribe(
-      (response) => {
-        this.rowData = response;
-      },
-      (error) => {
-        console.error('Error fetching row data:', error);
-      }
-    );
+  getData(id: number) {
+    this.detailsService.getDetailsData(id).subscribe((data: Product) => {
+      this.rowData = data;
+    });
   }
 
-  updateRow(): void {
-    this.http.put(`${this.apiUrl}/${this.rowData.id}`, this.rowData).subscribe(
-      (response) => {
-        console.log('Row updated:', response);
-        this.router.navigate(['/']); // Navigate back to the dashboard
-      },
-      (error) => {
-        console.error('Error updating row:', error);
-      }
-    );
+  updateData(): void {
+    this.detailsService.updateData(this.rowData as Product);
+    this.router.navigate(['/']);    
   }
 
-  deleteRow(): void {
-    this.http.delete(`${this.apiUrl}/${this.rowData.id}`).subscribe(
-      (response) => {
-        console.log('Row deleted:', response);
-        this.router.navigate(['/']); // Navigate back to the dashboard
-      },
-      (error) => {
-        console.error('Error deleting row:', error);
-      }
-    );
+  deleteData(): void {
+    this.detailsService.deleteData(this.rowData.id);
+    this.router.navigate(['/']);
+  }
+
+  backToDashboard(): void {
+    this.router.navigate(['/']);  
   }
 }
