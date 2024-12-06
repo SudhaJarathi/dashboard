@@ -39,7 +39,7 @@ namespace dashboard_api.Services
             return _mapper.Map<ProductReadDTO>(createdProduct);
         }
 
-        public async Task<ProductReadDTO> UpdateProductAsync(int id, ProductCreateUpdateDTO productCreateUpdateDTO)
+        public async Task<ProductReadDTO> UpdateProductAsync(int id, ProductReadDTO productCreateUpdateDTO)
         {
             var existingProduct = await _productRepository.GetProductByIdAsync(id);
             if (existingProduct == null)

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dashboard_api", "dashboard_api.csproj", "{FCCBCD76-5E7D-4510-898A-03A9F9005CB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dashboard.unit.test", "..\dashboard.unit.test\dashboard.unit.test.csproj", "{6547996D-5E4F-4E80-AAF3-F460E9528F47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FCCBCD76-5E7D-4510-898A-03A9F9005CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCCBCD76-5E7D-4510-898A-03A9F9005CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCCBCD76-5E7D-4510-898A-03A9F9005CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6547996D-5E4F-4E80-AAF3-F460E9528F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6547996D-5E4F-4E80-AAF3-F460E9528F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6547996D-5E4F-4E80-AAF3-F460E9528F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6547996D-5E4F-4E80-AAF3-F460E9528F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
