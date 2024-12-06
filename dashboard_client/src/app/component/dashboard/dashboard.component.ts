@@ -33,4 +33,8 @@ export class DashboardComponent implements OnInit {
     this.hasViewClicked = true;
     this.router.navigate(['/details', rowId]);
   }
+
+  onDetailDataChange(updatedData: string) {
+    this.hasViewClicked = false;
+  }
 }

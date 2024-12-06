@@ -17,10 +17,28 @@ export class DetailsService {
   }
 
   updateData(updatedData: Product): void {
-    this.http.put(`${this.apiUrl}/${updatedData.id}`, updatedData);
+    this.http.put(`${this.apiUrl}/${updatedData.id}`, updatedData).subscribe(
+      (response) => {
+        console.log('Row updated:', response);
+      },
+      (error) => {
+        console.error('Error updating row:', error);
+      },
+    );
   }
 
-  deleteData(id: number): void {
-    this.http.delete(`${this.apiUrl}/${id}`);
+  deleteData(id: number): boolean {
+    let result = false;
+    this.http.delete(`${this.apiUrl}/${id}`).subscribe(
+      (response) => {
+        console.log('Row deleted:', response);
+        result = true;
+      },
+      (error) => {
+        console.error('Error deleting row:', error);
+        result = false;
+      },
+    );
+    return result;
   }
 }

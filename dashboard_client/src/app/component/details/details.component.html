@@ -6,16 +6,16 @@
         <td>
           <label for="name">Name:</label>
         </td>
-        <td colspan="1">
+        <td class="column-align">
           <input type="text" id="name" [(ngModel)]="rowData.name" name="name" />
           <br />
         </td>
       </tr>
       <tr>
         <td>
-          <label for="description">Description:</label>
+          <label for="description" class="column-align">Description:</label>
         </td>
-        <td colspan="1">
+        <td class="column-align">
           <input
             type="text"
             id="description"
@@ -27,9 +27,9 @@
       </tr>
       <tr>
         <td>
-          <label for="category">Category:</label>
+          <label for="category" class="column-align">Category:</label>
         </td>
-        <td colspan="1">
+        <td class="column-align">
           <input
             type="text"
             id="category"
@@ -41,9 +41,9 @@
       </tr>
       <tr>
         <td>
-          <label for="price">Price:</label>
+          <label for="price" class="column-align">Price:</label>
         </td>
-        <td colspan="1">
+        <td class="column-align">
           <input
             type="number"
             id="price"
@@ -54,9 +54,12 @@
         </td>
       </tr>
       <tr>
-        <td style="padding-left: 100px">
-          <button type="button" (click)="backToDashboard()">Back</button>&nbsp;
-          <button type="button" (click)="updateData()">Update</button>&nbsp;
+        <td class="button-align">
+          <button type="button" (click)="backToDashboard()">Back</button>
+        </td>
+        <td class="combined-button">
+          <button type="button" (click)="updateData()">Update</button>
+          &nbsp;
           <button type="button" (click)="deleteData()">Delete</button>
         </td>
       </tr>
