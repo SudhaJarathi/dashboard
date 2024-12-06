@@ -12,7 +12,6 @@ import { Product } from 'src/app/model/product';
 export class DetailsComponent implements OnInit {
   rowData: any = {};
   id: number | null = null;
-  //@Input() detailTemplateVisible: boolean = true;
   @Output() onDataChange = new EventEmitter();
 
   constructor(
@@ -22,7 +21,7 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = 2; //Number(this.route.snapshot.paramMap.get('id'));
+    this.id = 1; //Number(this.route.snapshot.paramMap.get('id'));
     if (this.id) {
       this.getData(this.id);
     }
@@ -34,18 +33,28 @@ export class DetailsComponent implements OnInit {
     });
   }
 
+  createData(): void {
+    this.detailsService.createData(this.rowData as Product).subscribe(() => {
+      alert('New row added successfully');
+      this.onDataChange.emit();
+      this.router.navigate(['']);
+    });
+  }
+
   updateData(): void {
-    this.detailsService.updateData(this.rowData as Product);
-    this.onDataChange.emit();
-    this.router.navigate(['']);
+    this.detailsService.updateData(this.rowData as Product).subscribe(() => {
+      alert('Row updated successfully');
+      this.onDataChange.emit();
+      this.router.navigate(['']);
+    });
   }
 
   deleteData(): void {
-    const result = this.detailsService.deleteData(this.rowData.id);
-    if (result === true) {
+    this.detailsService.deleteData(this.rowData.id).subscribe(() => {
       alert('Row deleted successfully');
-    }
-    this.router.navigate(['']);
+      this.onDataChange.emit();
+      this.router.navigate(['']);
+    });
   }
 
   backToDashboard(): void {

@@ -8,7 +8,7 @@ import { Product } from '../../model/product';
   providedIn: 'root',
 })
 export class DetailsService {
-  private apiUrl = 'http://localhost:48612/api/dashboard';
+  private apiUrl = '/api/dashboard';
 
   constructor(private http: HttpClient) {}
 
@@ -16,29 +16,15 @@ export class DetailsService {
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 
-  updateData(updatedData: Product): void {
-    this.http.put(`${this.apiUrl}/${updatedData.id}`, updatedData).subscribe(
-      (response) => {
-        console.log('Row updated:', response);
-      },
-      (error) => {
-        console.error('Error updating row:', error);
-      },
-    );
+  createData(newData: Product): Observable<Product> {
+    return this.http.post<Product>(`${this.apiUrl}`, newData);
   }
 
-  deleteData(id: number): boolean {
-    let result = false;
-    this.http.delete(`${this.apiUrl}/${id}`).subscribe(
-      (response) => {
-        console.log('Row deleted:', response);
-        result = true;
-      },
-      (error) => {
-        console.error('Error deleting row:', error);
-        result = false;
-      },
-    );
-    return result;
+  updateData(updatedData: Product): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${updatedData.id}`, updatedData);
+  }
+
+  deleteData(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

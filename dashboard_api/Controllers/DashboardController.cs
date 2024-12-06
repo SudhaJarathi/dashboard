@@ -47,7 +47,7 @@ namespace dashboard_api.Controllers
         }
 
         [HttpPut()]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductCreateUpdateDTO product)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductReadDTO product)
         {
             var updatedProduct = await _productService.UpdateProductAsync(id, product);
             if (updatedProduct == null)

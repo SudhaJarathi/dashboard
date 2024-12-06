@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DashboardService } from './dashboard.service';
@@ -9,7 +9,7 @@ import { Product } from 'src/app/model/product';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnChanges {
   data: Product[] = [];
   hasViewClicked = false;
 
@@ -17,6 +17,12 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private dashboardService: DashboardService,
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['hasViewClicked']) {
+      this.getData();
+    }
+  }
 
   ngOnInit() {
     this.getData();

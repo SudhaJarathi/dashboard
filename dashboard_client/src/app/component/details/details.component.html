@@ -54,13 +54,24 @@
         </td>
       </tr>
       <tr>
-        <td class="button-align">
-          <button type="button" (click)="backToDashboard()">Back</button>
-        </td>
-        <td class="combined-button">
-          <button type="button" (click)="updateData()">Update</button>
-          &nbsp;
-          <button type="button" (click)="deleteData()">Delete</button>
+        <td></td>
+        <td>
+          <table>
+            <tr>
+              <td class="button-align">
+                <button type="button" (click)="backToDashboard()">Back</button>
+              </td>
+              <td class="button-align">
+                <button type="button" (click)="createData()">Add</button>
+              </td>
+              <td class="combined-button">
+                <button type="button" (click)="updateData()">Update</button>
+              </td>
+              <td class="button-align">
+                <button type="button" (click)="deleteData()">Delete</button>
+              </td>
+            </tr>
+          </table>
         </td>
       </tr>
     </table>

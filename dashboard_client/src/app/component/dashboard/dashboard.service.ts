@@ -8,7 +8,7 @@ import { Product } from '../../model/product';
   providedIn: 'root',
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:48612/api/dashboard';
+  private apiUrl = '/api/dashboard';
 
   constructor(private http: HttpClient) {}
 
