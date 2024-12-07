@@ -9,6 +9,6 @@ namespace dashboard_api.Data
         //it out in this interface so that we could create mock of DashboardDbContext class when unit testing
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }
