@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { DashboardService } from './dashboard.service';
@@ -9,7 +9,7 @@ import { Product } from 'src/app/model/product';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit, OnChanges {
+export class DashboardComponent implements OnInit {
   data: Product[] = [];
   hasViewClicked = false;
 
@@ -18,29 +18,24 @@ export class DashboardComponent implements OnInit, OnChanges {
     private dashboardService: DashboardService,
   ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['hasViewClicked']) {
-      this.getData();
-    }
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.getData();
   }
 
-  getData() {
+  getData(): void {
     this.dashboardService.getData().subscribe((data) => {
       this.data = data;
     });
   }
 
-  onRowClick(event: any) {
+  onRowClick(event: any): void {
     const rowId = event.data.id;
     this.hasViewClicked = true;
     this.router.navigate(['/details', rowId]);
   }
 
-  onDetailDataChange(updatedData: string) {
+  onDetailDataChange(updatedData: string): void {
+    this.getData();
     this.hasViewClicked = false;
   }
 }

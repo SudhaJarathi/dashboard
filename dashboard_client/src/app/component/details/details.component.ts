@@ -27,7 +27,7 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  getData(id: number) {
+  getData(id: number): void {
     this.detailsService.getDetailsData(id).subscribe((data: Product) => {
       this.rowData = data;
     });
@@ -35,30 +35,32 @@ export class DetailsComponent implements OnInit {
 
   createData(): void {
     this.detailsService.createData(this.rowData as Product).subscribe(() => {
-      alert('New row added successfully');
-      this.onDataChange.emit();
-      this.router.navigate(['']);
+      this.reset('New row added successfully');
     });
   }
 
   updateData(): void {
     this.detailsService.updateData(this.rowData as Product).subscribe(() => {
-      alert('Row updated successfully');
-      this.onDataChange.emit();
-      this.router.navigate(['']);
+      this.reset('Row updated successfully');
     });
   }
 
   deleteData(): void {
     this.detailsService.deleteData(this.rowData.id).subscribe(() => {
-      alert('Row deleted successfully');
-      this.onDataChange.emit();
-      this.router.navigate(['']);
+      this.reset('Row deleted successfully');
     });
   }
 
   backToDashboard(): void {
+    this.reset('');
+  }
+
+  private reset(alertMessage?: string): void {
+    if (alertMessage) {
+      alert(alertMessage);
+    }
     this.onDataChange.emit();
+    this.rowData = [];
     this.router.navigate(['']);
   }
 }
