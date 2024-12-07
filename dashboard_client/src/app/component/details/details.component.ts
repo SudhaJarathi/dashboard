@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { DetailsService } from './details.service';
@@ -11,7 +11,8 @@ import { Product } from 'src/app/model/product';
 })
 export class DetailsComponent implements OnInit {
   rowData: any = {};
-  id: number | null = null;
+  //id: number | null = null;
+  @Input() Id: number | 0 = 0;
   @Output() onDataChange = new EventEmitter();
 
   constructor(
@@ -21,9 +22,10 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    if (this.id) {
-      this.getData(this.id);
+    // This route is always giving null value, so used input value to pass rowId from parent component
+    //this.id = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.Id) {
+      this.getData(this.Id);
     }
   }
 

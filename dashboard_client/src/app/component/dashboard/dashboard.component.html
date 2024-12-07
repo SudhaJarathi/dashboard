@@ -24,5 +24,8 @@
 </ng-template>
 
 <ng-template #detailsTemplate>
-  <app-details (onDataChange)="onDetailDataChange($event)"></app-details>
+  <app-details
+    [Id]="rowId"
+    (onDataChange)="onDetailDataChange($event)"
+  ></app-details>
 </ng-template>

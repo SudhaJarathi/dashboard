@@ -12,6 +12,7 @@ import { Product } from 'src/app/model/product';
 export class DashboardComponent implements OnInit {
   data: Product[] = [];
   hasViewClicked = false;
+  rowId: number = 0;
 
   constructor(
     private router: Router,
@@ -29,9 +30,9 @@ export class DashboardComponent implements OnInit {
   }
 
   onRowClick(event: any): void {
-    const rowId = event.data.id;
+    this.rowId = event.data.id;
     this.hasViewClicked = true;
-    this.router.navigate(['/details', rowId]);
+    this.router.navigate(['/details', this.rowId]);
   }
 
   onDetailDataChange(updatedData: string): void {
